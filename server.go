@@ -27,6 +27,10 @@ func main() {
 
 	server := gin.New()
 
+	// load static assests
+	server.Static("/css", "./templates/css")
+	server.LoadHTMLGlob("templates/*.html")
+
 	// add middleware
 	// server.Use(gin.Recovery(), middlewares.Logger(), middlewares.BasicAuth(), gindump.Dump())
 	server.Use(gin.Recovery(), middlewares.Logger(), middlewares.BasicAuth())
@@ -37,18 +41,26 @@ func main() {
 		})
 	})
 
-	server.GET("/videos", func(ctx *gin.Context) {
-		ctx.JSON(200, videoController.FindAll())
-	})
+	apiRoutes := server.Group("/api")
+	{
+		apiRoutes.GET("/videos", func(ctx *gin.Context) {
+			ctx.JSON(200, videoController.FindAll())
+		})
 
-	server.POST("/videos", func(ctx *gin.Context) {
-		err := videoController.Save(ctx)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		} else {
-			ctx.JSON(200, gin.H{"message": "Video saved successfully!!"})
-		}
-	})
+		apiRoutes.POST("/videos", func(ctx *gin.Context) {
+			err := videoController.Save(ctx)
+			if err != nil {
+				ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			} else {
+				ctx.JSON(200, gin.H{"message": "Video saved successfully!!"})
+			}
+		})
+	}
+
+	viewRoutes := server.Group("/view")
+	{
+		viewRoutes.GET("/videos", videoController.ShowAll)
+	}
 
 	server.Run(":8080")
 }

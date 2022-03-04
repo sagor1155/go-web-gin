@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"net/http"
+
 	"example.com/sagor/go-web-gin/entity"
 	"example.com/sagor/go-web-gin/service"
 	"example.com/sagor/go-web-gin/validators"
@@ -11,6 +13,7 @@ import (
 type VideoController interface {
 	FindAll() []entity.Video
 	Save(ctx *gin.Context) error
+	ShowAll(ctx *gin.Context)
 }
 
 type controller struct {
@@ -43,4 +46,13 @@ func (c *controller) Save(ctx *gin.Context) error {
 	}
 	c.service.Save(video)
 	return nil
+}
+
+func (c *controller) ShowAll(ctx *gin.Context) {
+	videos := c.service.FindAll()
+	data := gin.H{
+		"title":  "Video page",
+		"videos": videos,
+	}
+	ctx.HTML(http.StatusOK, "index.html", data)
 }
