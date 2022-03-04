@@ -2,13 +2,14 @@ package main
 
 import (
 	"io"
+	"net/http"
 	"os"
 
 	"example.com/sagor/go-web-gin/controller"
 	"example.com/sagor/go-web-gin/middlewares"
 	"example.com/sagor/go-web-gin/service"
 	"github.com/gin-gonic/gin"
-	gindump "github.com/tpkeeper/gin-dump"
+	// gindump "github.com/tpkeeper/gin-dump"
 )
 
 var (
@@ -27,7 +28,8 @@ func main() {
 	server := gin.New()
 
 	// add middleware
-	server.Use(gin.Recovery(), middlewares.Logger(), middlewares.BasicAuth(), gindump.Dump())
+	// server.Use(gin.Recovery(), middlewares.Logger(), middlewares.BasicAuth(), gindump.Dump())
+	server.Use(gin.Recovery(), middlewares.Logger(), middlewares.BasicAuth())
 
 	server.GET("/test", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
@@ -40,7 +42,12 @@ func main() {
 	})
 
 	server.POST("/videos", func(ctx *gin.Context) {
-		ctx.JSON(200, videoController.Save(ctx))
+		err := videoController.Save(ctx)
+		if err != nil {
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		} else {
+			ctx.JSON(200, gin.H{"message": "Video saved successfully!!"})
+		}
 	})
 
 	server.Run(":8080")
