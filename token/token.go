@@ -54,6 +54,7 @@ func getTokenFromString(tokenString string, claims *entity.JwtClaims) (*jwt.Toke
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
+		// return secret key so that the token can be validated by 'ParseWithClaims' method
 		return []byte(JWTPrivateKey), nil
 	})
 }

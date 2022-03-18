@@ -28,9 +28,33 @@ func ValidateToken() gin.HandlerFunc {
 			if len(ctx.Keys) == 0 {
 				ctx.Keys = make(map[string]interface{})
 			}
-			ctx.Keys["CompanyId"] = claims.CompanyId
 			ctx.Keys["Username"] = claims.Username
 			ctx.Keys["Roles"] = claims.Roles
+		}
+	}
+}
+
+func Authorization(validRoles []int) gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		if len(ctx.Keys) == 0 {
+			ReturnUnauthorized(ctx)
+		}
+
+		rolesVal := ctx.Keys["Roles"]
+		if rolesVal == nil {
+			ReturnUnauthorized(ctx)
+		}
+
+		roles := rolesVal.([]int)
+		validation := make(map[int]int)
+		for _, val := range roles {
+			validation[val] = 0
+		}
+
+		for _, val := range validRoles {
+			if _, ok := validation[val]; !ok {
+				ReturnUnauthorized(ctx)
+			}
 		}
 	}
 }

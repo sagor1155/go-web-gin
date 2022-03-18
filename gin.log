@@ -11,66 +11,20 @@
 	- index.html
 
 [GIN-debug] POST   /login                    --> example.com/sagor/go-web-gin/controller.Login (3 handlers)
-[GIN-debug] GET    /api/videos               --> main.main.func1 (4 handlers)
-[GIN-debug] POST   /api/videos               --> main.main.func2 (4 handlers)
+[GIN-debug] GET    /api/videos               --> main.main.func1 (5 handlers)
+[GIN-debug] POST   /api/videos               --> main.main.func2 (5 handlers)
 [GIN-debug] GET    /view/videos              --> example.com/sagor/go-web-gin/controller.VideoController.ShowAll-fm (3 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8080
-::1 - [18 Mar 22 23:47 +06] POST       /login     200        849.8µs    
-::1 - [18 Mar 22 23:47 +06] POST       /api/videos 200        807.6µs    
-::1 - [18 Mar 22 23:47 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:47 +06] POST       /api/videos 200        242.3µs    
-::1 - [18 Mar 22 23:48 +06] GET        /api/videos 401        473.1µs    
-::1 - [18 Mar 22 23:48 +06] GET        /api/videos 401        185.3µs    
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        1.022ms    
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        607.9µs    
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        726µs      
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        1.0052ms   
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        915.2µs    
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        1.0431ms   
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:48 +06] GET        /api/videos 401        1.1024ms   
-::1 - [18 Mar 22 23:48 +06] GET        /api/videos 401        0s         
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        630.2µs    
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        750.8µs    
-::1 - [18 Mar 22 23:48 +06] GET        /api/videos 200        354.4µs    
-::1 - [18 Mar 22 23:48 +06] GET        /api/videos 200        1.0011ms   
-::1 - [18 Mar 22 23:48 +06] POST       /login     200        538.8µs    
-::1 - [18 Mar 22 23:48 +06] POST       /api/videos 200        1.0648ms   
-::1 - [18 Mar 22 23:48 +06] GET        /api/videos 200        687.2µs    
-::1 - [18 Mar 22 23:49 +06] GET        /api/videos 200        459.7µs    
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:49 +06] GET        /api/videos 200        0s         
-::1 - [18 Mar 22 23:49 +06] GET        /api/videos 200        472.9µs    
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 200        443.1µs    
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 200        1.0627ms   
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 200        788.3µs    
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 200        824.6µs    
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 200        1.0959ms   
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 401        0s         
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 401        0s         
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 401        0s         
-::1 - [18 Mar 22 23:49 +06] GET        /api/videos 401        959.4µs    
-::1 - [18 Mar 22 23:49 +06] GET        /api/videos 401        0s         
-::1 - [18 Mar 22 23:49 +06] POST       /api/videos 401        1.0011ms   
-::1 - [18 Mar 22 23:50 +06] POST       /api/videos 401        988.5µs    
-::1 - [18 Mar 22 23:50 +06] POST       /login     200        389.2µs    
-::1 - [18 Mar 22 23:50 +06] POST       /api/videos 200        0s         
-::1 - [18 Mar 22 23:50 +06] GET        /api/videos 401        64µs       
-::1 - [18 Mar 22 23:50 +06] GET        /api/videos 200        666.5µs    
+::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        20.4µs     
+::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        693µs      
+::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        967.8µs    
+::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        708.1µs    
+::1 - [19 Mar 22 01:53 +06] POST       /api/videos 401        0s         
+::1 - [19 Mar 22 01:53 +06] POST       /api/videos 401        0s         
+::1 - [19 Mar 22 01:53 +06] POST       /api/videos 200        1.4674ms   
+::1 - [19 Mar 22 01:53 +06] POST       /api/videos 200        0s         
+::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        0s         
+::1 - [19 Mar 22 01:53 +06] POST       /api/videos 200        0s         
+::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        0s         
