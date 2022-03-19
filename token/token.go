@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"example.com/sagor/go-web-gin/entity"
+	dto "example.com/sagor/go-web-gin/dto"
 	jwt "github.com/dgrijalva/jwt-go"
 )
 
@@ -13,7 +13,7 @@ const (
 	ip            = "192.168.0.107"
 )
 
-func GenerateToken(claims *entity.JwtClaims, expirationTime time.Time) (string, error) {
+func GenerateToken(claims *dto.JwtClaims, expirationTime time.Time) (string, error) {
 	claims.ExpiresAt = expirationTime.Unix()
 	claims.IssuedAt = time.Now().UTC().Unix()
 	claims.Issuer = ip
@@ -28,8 +28,8 @@ func GenerateToken(claims *entity.JwtClaims, expirationTime time.Time) (string, 
 	return tokenString, nil
 }
 
-func VerifyToken(tokenString string) (bool, *entity.JwtClaims) {
-	claims := &entity.JwtClaims{}
+func VerifyToken(tokenString string) (bool, *dto.JwtClaims) {
+	claims := &dto.JwtClaims{}
 	token, _ := getTokenFromString(tokenString, claims)
 	// fmt.Println(claims)
 	if token.Valid {
@@ -40,13 +40,13 @@ func VerifyToken(tokenString string) (bool, *entity.JwtClaims) {
 	return false, claims
 }
 
-func GetClaims(tokenString string) entity.JwtClaims {
-	claims := &entity.JwtClaims{}
+func GetClaims(tokenString string) dto.JwtClaims {
+	claims := &dto.JwtClaims{}
 	getTokenFromString(tokenString, claims)
 	return *claims
 }
 
-func getTokenFromString(tokenString string, claims *entity.JwtClaims) (*jwt.Token, error) {
+func getTokenFromString(tokenString string, claims *dto.JwtClaims) (*jwt.Token, error) {
 	return jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
 		// validate alg
 		// fmt.Println(token.Header["alg"])

@@ -1,4 +1,4 @@
-package entity
+package dto
 
 type LoginRequest struct {
 	Username string `json:"Username" form:"Username" binding:"required"`

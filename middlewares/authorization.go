@@ -3,13 +3,13 @@ package middlewares
 import (
 	"net/http"
 
-	"example.com/sagor/go-web-gin/entity"
+	dto "example.com/sagor/go-web-gin/dto"
 	"example.com/sagor/go-web-gin/token"
 	"github.com/gin-gonic/gin"
 )
 
 func ReturnUnauthorized(ctx *gin.Context) {
-	ctx.AbortWithStatusJSON(http.StatusUnauthorized, entity.Response{
+	ctx.AbortWithStatusJSON(http.StatusUnauthorized, dto.Response{
 		Error:   "You are not authorized to access this path",
 		Status:  http.StatusUnauthorized,
 		Message: "Unauthorized access",

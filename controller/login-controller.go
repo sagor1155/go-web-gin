@@ -5,8 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	"example.com/sagor/go-web-gin/entity"
+	dto "example.com/sagor/go-web-gin/dto"
 	"example.com/sagor/go-web-gin/token"
+	utils "example.com/sagor/go-web-gin/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,19 +17,19 @@ const (
 )
 
 func Login(ctx *gin.Context) {
-	var loginObj entity.LoginRequest
+	var loginObj dto.LoginRequest
 	if err := ctx.ShouldBindJSON(&loginObj); err != nil {
-		BadRequest(ctx, http.StatusBadRequest, "Invalid Request", err)
+		utils.BadRequest(ctx, http.StatusBadRequest, "Invalid Request", err)
 		return
 	}
 
 	// Validate the login object for valid credentials
 	if loginObj.Username != username || loginObj.Password != password {
-		BadRequest(ctx, http.StatusUnauthorized, "Failed to login!!", fmt.Errorf("invalid user credential"))
+		utils.BadRequest(ctx, http.StatusUnauthorized, "Failed to login!!", fmt.Errorf("invalid user credential"))
 		return
 	}
 
-	claims := &entity.JwtClaims{}
+	claims := &dto.JwtClaims{}
 	claims.Username = loginObj.Username
 	claims.Roles = loginObj.Roles
 	claims.Audience = ctx.Request.Header.Get("Referer")
@@ -38,8 +39,8 @@ func Login(ctx *gin.Context) {
 	tokenString, err := token.GenerateToken(claims, expirationTime)
 
 	if err != nil {
-		BadRequest(ctx, http.StatusBadRequest, "Error in generating token", err)
+		utils.BadRequest(ctx, http.StatusBadRequest, "Error in generating token", err)
 		return
 	}
-	OK(ctx, http.StatusOK, "token created", tokenString)
+	utils.OK(ctx, http.StatusOK, "token created", tokenString)
 }

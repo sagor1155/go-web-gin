@@ -17,14 +17,3 @@
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8080
-::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        20.4µs     
-::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        693µs      
-::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        967.8µs    
-::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        708.1µs    
-::1 - [19 Mar 22 01:53 +06] POST       /api/videos 401        0s         
-::1 - [19 Mar 22 01:53 +06] POST       /api/videos 401        0s         
-::1 - [19 Mar 22 01:53 +06] POST       /api/videos 200        1.4674ms   
-::1 - [19 Mar 22 01:53 +06] POST       /api/videos 200        0s         
-::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        0s         
-::1 - [19 Mar 22 01:53 +06] POST       /api/videos 200        0s         
-::1 - [19 Mar 22 01:53 +06] GET        /api/videos 200        0s         
