@@ -2,7 +2,6 @@ package main
 
 import (
 	"io"
-	"net/http"
 	"os"
 
 	"example.com/sagor/go-web-gin/controller"
@@ -36,24 +35,11 @@ func main() {
 	server.Use(gin.Recovery(), middlewares.Logger())
 
 	apiRoutes := server.Group("/api")
-
-	apiRoutes.GET("/videos", func(ctx *gin.Context) {
-		ctx.JSON(200, videoController.FindAll())
-	})
-
-	apiRoutes.POST("/videos", func(ctx *gin.Context) {
-		err := videoController.Save(ctx)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		} else {
-			ctx.JSON(200, gin.H{"message": "Video saved successfully!!"})
-		}
-	})
+	apiRoutes.GET("/videos", videoController.FindAll)
+	apiRoutes.POST("/videos", videoController.Save)
 
 	viewRoutes := server.Group("/view")
-	{
-		viewRoutes.GET("/videos", videoController.ShowAll)
-	}
+	viewRoutes.GET("/videos", videoController.ShowAll)
 
 	server.Run(":8080")
 }

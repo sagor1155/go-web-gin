@@ -5,14 +5,15 @@ import (
 
 	"example.com/sagor/go-web-gin/entity"
 	"example.com/sagor/go-web-gin/service"
+	utils "example.com/sagor/go-web-gin/utils"
 	"example.com/sagor/go-web-gin/validators"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 )
 
 type VideoController interface {
-	FindAll() []entity.Video
-	Save(ctx *gin.Context) error
+	FindAll(ctx *gin.Context)
+	Save(ctx *gin.Context)
 	ShowAll(ctx *gin.Context)
 }
 
@@ -30,22 +31,23 @@ func New(service service.VideoService) VideoController {
 	}
 }
 
-func (c *controller) FindAll() []entity.Video {
-	return c.service.FindAll()
+func (c *controller) FindAll(ctx *gin.Context) {
+	utils.OK(ctx, http.StatusOK, "Successfull", c.service.FindAll())
 }
 
-func (c *controller) Save(ctx *gin.Context) error {
+func (c *controller) Save(ctx *gin.Context) {
 	var video entity.Video
-	err := ctx.ShouldBindJSON(&video)
-	if err != nil {
-		return err
+	if err := ctx.ShouldBindJSON(&video); err != nil {
+		utils.BadRequest(ctx, http.StatusBadRequest, "Invalid video format!!", err)
+		return
 	}
-	err = validate.Struct(video)
-	if err != nil {
-		return err
+
+	if err := validate.Struct(video); err != nil {
+		utils.BadRequest(ctx, http.StatusBadRequest, "Invalid video format!!", err)
+		return
 	}
-	c.service.Save(video)
-	return nil
+
+	utils.OK(ctx, http.StatusOK, "Video saved successfully!!", c.service.Save(video))
 }
 
 func (c *controller) ShowAll(ctx *gin.Context) {

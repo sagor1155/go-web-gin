@@ -5,14 +5,29 @@
 [GIN-debug] GET    /css/*filepath            --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (1 handlers)
 [GIN-debug] HEAD   /css/*filepath            --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (1 handlers)
 [GIN-debug] Loaded HTML Templates (4): 
-	- index.html
 	- 
 	- footer.html
 	- header.html
+	- index.html
 
-[GIN-debug] GET    /api/videos               --> main.main.func1 (3 handlers)
-[GIN-debug] POST   /api/videos               --> main.main.func2 (3 handlers)
+[GIN-debug] GET    /api/videos               --> example.com/sagor/go-web-gin/controller.VideoController.FindAll-fm (3 handlers)
+[GIN-debug] POST   /api/videos               --> example.com/sagor/go-web-gin/controller.VideoController.Save-fm (3 handlers)
 [GIN-debug] GET    /view/videos              --> example.com/sagor/go-web-gin/controller.VideoController.ShowAll-fm (3 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8080
+::1 - [20 Mar 22 04:04 +06] POST       /api/videos 400        692.9µs    
+::1 - [20 Mar 22 04:04 +06] POST       /api/videos 400        0s         
+::1 - [20 Mar 22 04:04 +06] POST       /api/videos 400        521µs      
+::1 - [20 Mar 22 04:04 +06] POST       /api/videos 400        0s         
+::1 - [20 Mar 22 04:04 +06] POST       /api/videos 400        940.4µs    
+::1 - [20 Mar 22 04:04 +06] POST       /api/videos 400        0s         
+::1 - [20 Mar 22 04:04 +06] POST       /api/videos 400        0s         
+::1 - [20 Mar 22 04:04 +06] POST       /api/videos 400        291.7µs    
+::1 - [20 Mar 22 04:04 +06] POST       /api/videos 400        0s         
+::1 - [20 Mar 22 04:05 +06] POST       /api/videos 200        207µs      
+::1 - [20 Mar 22 04:05 +06] POST       /api/videos 200        989.9µs    
+::1 - [20 Mar 22 04:05 +06] GET        /api/videos 200        137.8µs    
+::1 - [20 Mar 22 04:05 +06] POST       /api/videos 200        0s         
+::1 - [20 Mar 22 04:05 +06] POST       /api/videos 200        194.9µs    
+::1 - [20 Mar 22 04:05 +06] GET        /api/videos 200        0s         
