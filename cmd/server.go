@@ -17,11 +17,6 @@ var (
 	videoController controller.VideoController = controller.New(videoService)
 )
 
-const (
-	ROLE_ADMIN = 1
-	ROLE_USER  = 2
-)
-
 func setupLogOutput() {
 	f, _ := os.Create("gin.log")
 	gin.DefaultWriter = io.MultiWriter(f, os.Stdout) // write log output into both file and stdout
@@ -40,17 +35,13 @@ func main() {
 	// server.Use(gin.Recovery(), middlewares.Logger(), middlewares.BasicAuth(), gindump.Dump())
 	server.Use(gin.Recovery(), middlewares.Logger())
 
-	server.POST("/login", controller.Login)
-
 	apiRoutes := server.Group("/api")
-	apiRoutes.Use(middlewares.ValidateToken())
-	// apiRoutes.Use(middlewares.Authorization([]int{ROLE_ADMIN, ROLE_USER}))
 
-	apiRoutes.GET("/videos", middlewares.Authorization([]int{ROLE_USER}), func(ctx *gin.Context) {
+	apiRoutes.GET("/videos", func(ctx *gin.Context) {
 		ctx.JSON(200, videoController.FindAll())
 	})
 
-	apiRoutes.POST("/videos", middlewares.Authorization([]int{ROLE_ADMIN}), func(ctx *gin.Context) {
+	apiRoutes.POST("/videos", func(ctx *gin.Context) {
 		err := videoController.Save(ctx)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

@@ -5,14 +5,13 @@
 [GIN-debug] GET    /css/*filepath            --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (1 handlers)
 [GIN-debug] HEAD   /css/*filepath            --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (1 handlers)
 [GIN-debug] Loaded HTML Templates (4): 
+	- index.html
 	- 
 	- footer.html
 	- header.html
-	- index.html
 
-[GIN-debug] POST   /login                    --> example.com/sagor/go-web-gin/controller.Login (3 handlers)
-[GIN-debug] GET    /api/videos               --> main.main.func1 (5 handlers)
-[GIN-debug] POST   /api/videos               --> main.main.func2 (5 handlers)
+[GIN-debug] GET    /api/videos               --> main.main.func1 (3 handlers)
+[GIN-debug] POST   /api/videos               --> main.main.func2 (3 handlers)
 [GIN-debug] GET    /view/videos              --> example.com/sagor/go-web-gin/controller.VideoController.ShowAll-fm (3 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.

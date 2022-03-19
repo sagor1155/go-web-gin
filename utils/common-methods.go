@@ -3,7 +3,7 @@ package controller
 import (
 	"net/http"
 
-	dto "example.com/sagor/go-web-gin/dto"
+	"example.com/sagor/go-web-gin/dto"
 	"github.com/gin-gonic/gin"
 )
 
