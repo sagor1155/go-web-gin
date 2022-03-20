@@ -32,22 +32,22 @@ func New(service service.VideoService) VideoController {
 }
 
 func (c *controller) FindAll(ctx *gin.Context) {
-	utils.OK(ctx, http.StatusOK, "Successfull", c.service.FindAll())
+	utils.ReturnOK(ctx, http.StatusOK, "Successfull", c.service.FindAll())
 }
 
 func (c *controller) Save(ctx *gin.Context) {
 	var video entity.Video
 	if err := ctx.ShouldBindJSON(&video); err != nil {
-		utils.BadRequest(ctx, http.StatusBadRequest, "Invalid video format!!", err)
+		utils.ReturnBadRequest(ctx, http.StatusBadRequest, "Invalid video format!!", err)
 		return
 	}
 
 	if err := validate.Struct(video); err != nil {
-		utils.BadRequest(ctx, http.StatusBadRequest, "Invalid video format!!", err)
+		utils.ReturnBadRequest(ctx, http.StatusBadRequest, "Invalid video format!!", err)
 		return
 	}
 
-	utils.OK(ctx, http.StatusOK, "Video saved successfully!!", c.service.Save(video))
+	utils.ReturnOK(ctx, http.StatusOK, "Video saved successfully!!", c.service.Save(video))
 }
 
 func (c *controller) ShowAll(ctx *gin.Context) {

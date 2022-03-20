@@ -14,6 +14,9 @@ import (
 var (
 	videoService    service.VideoService       = service.New()
 	videoController controller.VideoController = controller.New(videoService)
+	loginService    service.LoginService       = service.NewLoginService()
+	jwtService      service.JWTService         = service.NewJWTService()
+	loginController controller.LoginController = controller.NewLoginController(loginService, jwtService)
 )
 
 func setupLogOutput() {
@@ -34,7 +37,10 @@ func main() {
 	// server.Use(gin.Recovery(), middlewares.Logger(), middlewares.BasicAuth(), gindump.Dump())
 	server.Use(gin.Recovery(), middlewares.Logger())
 
+	server.POST("/login", loginController.Login)
+
 	apiRoutes := server.Group("/api")
+	apiRoutes.Use(middlewares.AuthorizeJWT())
 	apiRoutes.GET("/videos", videoController.FindAll)
 	apiRoutes.POST("/videos", videoController.Save)
 
